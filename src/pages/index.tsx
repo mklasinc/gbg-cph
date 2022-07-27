@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { Scene } from '@/components/webgl/Scene'
 
 const Home: NextPage = () => {
   return (
@@ -10,8 +11,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Description comes here" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <h1>Hello</h1>
+      <Scene />
     </div>
   )
 }
