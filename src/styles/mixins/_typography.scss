@@ -1,0 +1,104 @@
+// @mixin Headline1 {
+//   font-family: font(kotex-bold);
+//   font-size: 40px;
+//   line-height: 1.05;
+//   letter-spacing: -2px;
+// }
+
+// @mixin Headline2 {
+//   font-family: font(kotex-bold);
+//   font-size: 32px;
+//   line-height: 1.05;
+//   letter-spacing: -2px;
+// }
+
+// @mixin BodyMedium {
+//   font-family: font(kotex-cyrillic-bold);
+//   font-style: normal;
+//   font-weight: bold;
+//   font-size: 24px;
+//   line-height: 120%;
+
+//   text-align: center;
+//   letter-spacing: -0.01em;
+
+//   @include mq($until: tablet) {
+//     font-size: 16px;
+//     line-height: 133.5%;
+//   }
+// }
+
+// @mixin BodyGuide {
+//   @include BodyMedium;
+
+//   font-size: 18px;
+//   line-height: 120%;
+
+//   @include mq($until: tablet) {
+//     font-size: 14px;
+//     line-height: 120%;
+//   }
+// }
+
+// @mixin Headline {
+//   @include BodyMedium;
+// }
+
+// @mixin TopLabel {
+//   font-family: font(kotex-bold);
+//   font-style: normal;
+//   font-weight: bold;
+//   font-size: 16px;
+//   line-height: 160%; /* or 26px */
+
+//   text-align: center;
+//   letter-spacing: 0.4em;
+
+//   color: color(white-40);
+// }
+
+// @mixin Question {
+//   font-family: font(kotex-bold);
+//   font-style: normal;
+//   font-weight: bold;
+//   font-size: 36px;
+//   line-height: 115%; /* or 41px */
+//   text-align: center;
+//   letter-spacing: -0.01em;
+
+//   @include mq($until: tablet) {
+//     font-size: 24px;
+//   }
+// }
+
+// @mixin QuestionHeadline {
+//   @include Question;
+//   font-size: 24px;
+//   line-height: 120%; /* identical to box height, or 29px */
+
+//   @include mq($until: tablet) {
+//     font-size: 14px;
+//     line-height: 133.5%;
+//   }
+// }
+
+// @mixin LevelIntro {
+//   font-family: font(kotex-bold);
+//   font-size: 30px;
+//   line-height: 160%; /* or 48px */
+//   text-align: center;
+//   letter-spacing: 0.4em;
+
+//   color: color(white-80);
+
+//   @include mq($until: tablet) {
+//     font-size: 18px;
+//   }
+// }
+
+// @mixin CardsBodySmall {
+//   font-family: font(kotex-bold);
+//   font-size: 16px;
+//   line-height: 133.5%; /* or 21px */
+//   letter-spacing: 0.02em;
+// }

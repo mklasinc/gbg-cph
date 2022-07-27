@@ -1,0 +1,39 @@
+// Fonts
+@function font($key) {
+    @return map-get($fonts, $key);
+}
+
+// Breakpoints
+@function breakpoint($key) {
+    @return map-get($mq-breakpoints, $key);
+}
+
+// Colors
+@function color($key) {
+    @return map-get($colors, $key);
+}
+
+// Gradients
+@function gradient($key) {
+    @return map-get($gradients, $key);
+}
+
+// Shadow
+@function shadow($key) {
+    @return map-get($shadows, $key);
+}
+
+// Radiuses
+@function radius($key) {
+    @return map-get($radiuses, $key);
+}
+
+// Z-indexes
+@function z-index($key) {
+    @return map-get($z-indexes, $key);
+}
+
+// Easings
+@function easing($key) {
+    @return map-get($easings, $key);
+}
