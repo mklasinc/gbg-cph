@@ -13,13 +13,16 @@
   "dependencies": {
     "@react-three/drei": "^9.17.3",
     "@react-three/fiber": "^8.2.2",
+    "axios": "^0.27.2",
+    "cookies": "^0.8.0",
     "leva": "^0.9.29",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.54.0",
     "sass-mq": "^6.0.0",
-    "three": "^0.142.0"
+    "three": "^0.142.0",
+    "zustand": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
@@ -32,6 +35,7 @@
     "@storybook/manager-webpack5": "^6.5.9",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
+    "@types/cookies": "^0.7.7",
     "@types/node": "18.6.1",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
