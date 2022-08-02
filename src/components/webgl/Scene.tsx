@@ -1,7 +1,6 @@
 import React, { Suspense, useState } from 'react'
 import { Canvas, extend, useThree } from '@react-three/fiber'
 import { useTexture, shaderMaterial } from '@react-three/drei'
-// import glsl from 'babel-plugin-glsl/macro'
 import * as THREE from 'three'
 import { useControls } from 'leva'
 

@@ -1,104 +1,80 @@
-// @mixin Headline1 {
-//   font-family: font(kotex-bold);
-//   font-size: 40px;
-//   line-height: 1.05;
-//   letter-spacing: -2px;
-// }
+@mixin TypoHeadline1Ultra {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 7.594rem;
 
-// @mixin Headline2 {
-//   font-family: font(kotex-bold);
-//   font-size: 32px;
-//   line-height: 1.05;
-//   letter-spacing: -2px;
-// }
+  line-height: 1;
+}
 
-// @mixin BodyMedium {
-//   font-family: font(kotex-cyrillic-bold);
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 24px;
-//   line-height: 120%;
+@mixin TypoHeadline1 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 5.063rem;
+  line-height: 1;
+}
 
-//   text-align: center;
-//   letter-spacing: -0.01em;
+@mixin TypoHeadline2 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
 
-//   @include mq($until: tablet) {
-//     font-size: 16px;
-//     line-height: 133.5%;
-//   }
-// }
+  font-size: 3.375rem;
+  line-height: 1.2;
+}
 
-// @mixin BodyGuide {
-//   @include BodyMedium;
+@mixin TypoHeadline3 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+}
 
-//   font-size: 18px;
-//   line-height: 120%;
+@mixin TypoSubHeadline {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
 
-//   @include mq($until: tablet) {
-//     font-size: 14px;
-//     line-height: 120%;
-//   }
-// }
+@mixin TypoCTA {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.03rem;
+}
 
-// @mixin Headline {
-//   @include BodyMedium;
-// }
+@mixin TypoBody {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
-// @mixin TopLabel {
-//   font-family: font(kotex-bold);
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 16px;
-//   line-height: 160%; /* or 26px */
+@mixin TypoSmall {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 0.6rem;
+}
 
-//   text-align: center;
-//   letter-spacing: 0.4em;
-
-//   color: color(white-40);
-// }
-
-// @mixin Question {
-//   font-family: font(kotex-bold);
-//   font-style: normal;
-//   font-weight: bold;
-//   font-size: 36px;
-//   line-height: 115%; /* or 41px */
-//   text-align: center;
-//   letter-spacing: -0.01em;
-
-//   @include mq($until: tablet) {
-//     font-size: 24px;
-//   }
-// }
-
-// @mixin QuestionHeadline {
-//   @include Question;
-//   font-size: 24px;
-//   line-height: 120%; /* identical to box height, or 29px */
-
-//   @include mq($until: tablet) {
-//     font-size: 14px;
-//     line-height: 133.5%;
-//   }
-// }
-
-// @mixin LevelIntro {
-//   font-family: font(kotex-bold);
-//   font-size: 30px;
-//   line-height: 160%; /* or 48px */
-//   text-align: center;
-//   letter-spacing: 0.4em;
-
-//   color: color(white-80);
-
-//   @include mq($until: tablet) {
-//     font-size: 18px;
-//   }
-// }
-
-// @mixin CardsBodySmall {
-//   font-family: font(kotex-bold);
-//   font-size: 16px;
-//   line-height: 133.5%; /* or 21px */
-//   letter-spacing: 0.02em;
-// }
+.typo__h1-ultra {
+  @include TypoHeadline1Ultra;
+}
+.typo__h1 {
+  @include TypoHeadline1;
+}
+.typo__h2 {
+  @include TypoHeadline2;
+}
+.typo__h3 {
+  @include TypoHeadline3;
+}
+.typo__subheadline {
+  @include TypoSubHeadline;
+}
+.typo__cta {
+  @include TypoCTA;
+}
+.typo__body {
+  @include TypoBody;
+}
+.typo__caption {
+  @include TypoSmall;
+}

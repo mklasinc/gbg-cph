@@ -12,13 +12,13 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
     prependData: `
+          @import '~sass-mq';
           @import "@/styles/_fonts.scss";
           @import "@/styles/_variables.scss";
           @import "@/styles/_functions.scss";
           @import "@/styles/_animations.scss";
           @import "@/styles/mixins/_base.scss";
           @import "@/styles/mixins/_typography.scss";
-          @import '~sass-mq';
         `,
   },
 

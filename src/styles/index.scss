@@ -30,6 +30,13 @@
   --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-inset-right: env(safe-area-inset-right, 0px);
   --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 40px;
+  --spacing-xl: 60px;
+  --spacing-xxl: 100px;
 }
 
 * {
@@ -50,6 +57,17 @@ body {
   overscroll-behavior: none; /* Chrome */
   margin: 0;
   padding: 0;
+}
+
+html {
+  font-size: 100%;
+} /*16px*/
+
+body {
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 html,
@@ -78,6 +96,11 @@ a:focus {
 
 svg {
   display: block;
+}
+
+img {
+  border: none;
+  outline: none;
 }
 
 #webgl {

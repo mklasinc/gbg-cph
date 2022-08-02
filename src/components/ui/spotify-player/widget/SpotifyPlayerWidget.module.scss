@@ -1,0 +1,100 @@
+$artwork-width: 45px;
+$icon-size-s: 16px;
+$icon-size-m: 25px;
+$icon-size-l: 35px;
+
+.container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 0 15px;
+  min-height: 50px;
+  min-width: 200px;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include hover;
+
+  &.hasTrack {
+    padding-left: calc(#{$artwork-width} + var(--spacing-xs));
+    justify-content: space-between;
+  }
+}
+
+.artwork {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $artwork-width;
+  height: 100%;
+  background-color: rgb(226, 226, 226);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.trackInfo {
+  margin-right: var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.artist {
+  color: rgb(151, 151, 151);
+}
+
+.spotifyLogo {
+  width: $icon-size-m;
+  height: $icon-size-m;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cta {
+  @include TypoCTA;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.error {
+  @include TypoSmall;
+}
+
+.loading {
+  width: $icon-size-l;
+  height: $icon-size-l;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.paused {
+  width: $icon-size-s;
+  height: $icon-size-s;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

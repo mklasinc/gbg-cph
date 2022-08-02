@@ -5,3 +5,9 @@ declare module JSX {
     imageShader: ReactThreeFiber.Object3DNode<ImageShader, typeof ImageShader>
   }
 }
+
+declare global {
+  interface Window {
+    Spotify: Spotify
+  }
+}

@@ -6,16 +6,16 @@ import { useSpotifyStore } from '~/store/spotify'
 
 export function useSpotifyAuth(redirectURL = '/') {
   const router = useRouter()
-  const isLoggedIn = useSpotifyStore((state) => state.loggedIn)
+  const isLoggedIn = useSpotifyStore((state) => state.isLoggedIn)
   const access_token = useSpotifyStore((state) => state.access_token)
   const refresh_token = useSpotifyStore((state) => state.refresh_token)
   const expires_in = useSpotifyStore((state) => state.expires_in)
+  const isAuthorizing = useSpotifyStore((state) => state.isAuthorizing)
   const set = useSpotifyStore((state) => state.set)
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     ;(async function () {
-      setIsLoading(true)
+      set({ isAuthorizing: true })
 
       // if there are access and refresh tokens in the query params, save those to local storage
       const urlParams = new URLSearchParams(window.location.search)
@@ -31,8 +31,8 @@ export function useSpotifyAuth(redirectURL = '/') {
           expires_in: tokenExpirationDate,
         })
 
-        setIsLoading(false)
-        set({ loggedIn: true })
+        set({ isAuthorizing: false })
+        set({ isLoggedIn: true })
         router.push(redirectURL, undefined, { shallow: true })
         return
       }
@@ -47,29 +47,27 @@ export function useSpotifyAuth(redirectURL = '/') {
             const { data } = await axios.get<RefreshTokenData>(`/api/spotify/refresh?refresh_token=${refresh_token}`)
             const { access_token, error, expires_in } = data
             if (error) {
-              set({ loggedIn: false })
+              set({ isLoggedIn: false })
             } else {
               const tokenExpirationDate = +Date.now() + +expires_in
-              set({ loggedIn: true, access_token, expires_in: tokenExpirationDate })
+              set({ isLoggedIn: true, access_token, expires_in: tokenExpirationDate })
             }
           } catch (error) {
-            set({ loggedIn: false })
-            setIsLoading(false)
+            set({ isLoggedIn: false })
           }
         } else {
-          set({ loggedIn: true })
+          set({ isLoggedIn: true })
         }
-        setIsLoading(false)
       } else {
-        set({ loggedIn: false })
+        set({ isLoggedIn: false })
         router.push(redirectURL, undefined, { shallow: true })
       }
-      setIsLoading(false)
+      set({ isAuthorizing: false })
     })()
   }, [])
 
   return {
-    isLoading,
+    isLoading: isAuthorizing,
     isLoggedIn,
   }
 }
