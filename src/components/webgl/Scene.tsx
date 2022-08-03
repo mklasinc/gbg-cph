@@ -1,5 +1,5 @@
-import React, { Suspense, useState } from 'react'
-import { Canvas, extend, useThree } from '@react-three/fiber'
+import React, { Suspense, useState, useRef } from 'react'
+import { Canvas, extend, useThree, useFrame } from '@react-three/fiber'
 import { useTexture, shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 import { useControls } from 'leva'
@@ -59,6 +59,8 @@ const Image = () => {
   const texture = useTexture('https://i8.amplience.net/i/rapha/_51A9067')
   // const texture = useTexture('/textures/DSCF2145.JPG')
   const [frame] = useState(new THREE.Vector2(3, 4))
+  const { viewport } = useThree()
+  const ref = useRef<THREE.Mesh>(null)
 
   const { edge } = useControls({
     edge: {
@@ -69,8 +71,19 @@ const Image = () => {
     },
   })
 
+  const targetPosition = useRef(new THREE.Vector3())
+
+  // useFrame(({ mouse }) => {
+  //   if (ref.current) {
+  //     const x = (mouse.x * viewport.width) / 2
+  //     const y = (mouse.y * viewport.height) / 2
+  //     targetPosition.current.set(x * 0.05, y * 0.05, 0)
+  //     ref.current.position.lerp(targetPosition.current, 0.02)
+  //   }
+  // })
+
   return (
-    <mesh position-z={0.01} scale={1.4}>
+    <mesh ref={ref} position-z={0.01} scale={1.4}>
       <planeBufferGeometry attach="geometry" args={[frame.x, frame.y]} />
       <imageShader
         transparent={true}

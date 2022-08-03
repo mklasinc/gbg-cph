@@ -18,6 +18,7 @@ $icon-size-l: 35px;
   align-items: center;
   justify-content: center;
 
+  @include interactable;
   @include hover;
 
   &.hasTrack {

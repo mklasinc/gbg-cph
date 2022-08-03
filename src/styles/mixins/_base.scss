@@ -74,3 +74,12 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+@mixin not-interactable {
+  cursor: default;
+  pointer-events: none;
+}
+
+@mixin interactable {
+  pointer-events: auto;
+}
