@@ -2,7 +2,7 @@ import { SpotifyPlayerWidget } from './widget/SpotifyPlayerWidget'
 import classnames from 'classnames'
 import Script from 'next/script'
 import type { Track, WebPlaybackPlayer } from '~/types/spotify'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import { useSpotifyStore } from '~/store/spotify'
 import { SPOTIFY_PLAYER_NAME } from '~/constants/spotify'
@@ -42,9 +42,10 @@ export const SpotifyPlayer = () => {
   const isAuthorizing = useSpotifyStore((state) => state.isAuthorizing)
   const access_token = useSpotifyStore((state) => state.access_token)
 
-  const [player, setPlayer] = useState(null)
+  const [player, setPlayer] = useState<any>(null)
   const [paused, setPaused] = useState(false)
   const [active, setActive] = useState(false)
+  const [volume, setVolume] = useState(0.5)
   const [deviceId, setDeviceId] = useState('')
   const [trackUri] = useState('spotify:track:2BMw5cf2Z0oIDLQpdOY38B')
   const [trackInfo, setTrackInfo] = useState<Track | null>(null)
@@ -56,6 +57,7 @@ export const SpotifyPlayer = () => {
       getOAuthToken: (cb: (access_token: string) => void) => {
         cb(access_token as string)
       },
+      volume: volume,
     })
 
     // see: https://developer.spotify.com/documentation/web-playback-sdk/reference/#event-ready
@@ -94,19 +96,36 @@ export const SpotifyPlayer = () => {
     setPlayer(_player)
   }, [access_token, isLibraryLoaded])
 
-  /**
-   * Play if all conditions are met
-   */
-  useEffect(() => {
-    if (player && deviceId && access_token) {
-      play({
-        access_token,
-        player,
-        track_uri: trackUri,
-        device_id: deviceId,
+  const onVolumeChange = useCallback(
+    (volume: number) => {
+      if (!player) return
+      player.setVolume(volume).then(() => {
+        console.log('set volume')
       })
-    }
-  }, [player, deviceId, access_token, trackUri])
+    },
+    [player]
+  )
+
+  const onResume = useCallback(() => {
+    if (!player) return
+    player.resume().then(() => {
+      console.log('resumed player')
+    })
+  }, [player])
+
+  // /**
+  //  * Play if all conditions are met
+  //  */
+  // useEffect(() => {
+  //   if (player && deviceId && access_token) {
+  //     play({
+  //       access_token,
+  //       player,
+  //       track_uri: trackUri,
+  //       device_id: deviceId,
+  //     })
+  //   }
+  // }, [player, deviceId, access_token, trackUri])
 
   return (
     <SpotifyPlayerWidget
@@ -115,6 +134,9 @@ export const SpotifyPlayer = () => {
       isPaused={paused}
       error=""
       track={trackInfo}
+      onVolumeChange={onVolumeChange}
+      onResume={onResume}
+      volume={volume}
     />
   )
 }

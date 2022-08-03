@@ -1,8 +1,9 @@
 import styles from './SpotifyPlayerWidget.module.scss'
 import Link from 'next/link'
 import type { Track } from '~/types/spotify'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import classnames from 'classnames'
+import { throttle, noop } from '@/utils'
 
 interface Props {
   track: Track | null
@@ -10,13 +11,18 @@ interface Props {
   isLoggedIn: boolean
   isPaused: boolean
   error: string | null
+  volume: number
+  onVolumeChange: (volume: number) => void
+  onResume: () => void
 }
 
 type WidgetState = 'loading' | 'logged-out' | 'playing' | 'idle' | 'error' | 'paused'
 
-export const SpotifyPlayerWidget = ({ track, isLoading, isLoggedIn, isPaused, error }: Props) => {
+export const SpotifyPlayerWidget = ({ track, isLoading, isLoggedIn, isPaused, volume, onResume, onVolumeChange, error }: Props) => {
   const hasTrack = useMemo(() => !!track, [track])
   const [state, setState] = useState<WidgetState>('loading')
+
+  const sliderProgressRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     if (isLoading) {
@@ -34,11 +40,18 @@ export const SpotifyPlayerWidget = ({ track, isLoading, isLoggedIn, isPaused, er
     } else {
       setState('logged-out')
     }
-  }, [isLoading, isLoggedIn, error, hasTrack])
+  }, [isLoading, isLoggedIn, error, hasTrack, isPaused])
 
   return (
     <>
-      <div className={classnames({ [styles.container]: true, [styles.hasTrack]: hasTrack })}>
+      <div
+        className={classnames({ [styles.container]: true, [styles.hasTrack]: hasTrack && !isPaused })}
+        onClick={() => {
+          if (state === 'paused') {
+            onResume()
+          }
+        }}
+      >
         {state === 'logged-out' && (
           <Link href="/api/spotify/login">
             <a className={styles.cta}>Login</a>
@@ -110,6 +123,21 @@ export const SpotifyPlayerWidget = ({ track, isLoading, isLoggedIn, isPaused, er
               <div className={styles.track}>{track?.name}</div>
               <div className={styles.artist}>{track?.artists[0].name}</div>
             </div>
+            <div className={styles.slidecontainer}>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.01}
+                className={styles.slider}
+                id="volumeSlider"
+                onInput={(e) => {
+                  if (sliderProgressRef) sliderProgressRef.current!.style.width = `${+e.target.value * 100}%`
+                }}
+                onChange={throttle((e) => onVolumeChange(+e.target.value), 100)}
+              />
+              <span ref={sliderProgressRef} style={{ width: '50%' }} className={styles.progress}></span>
+            </div>
             <div className={styles.spotifyLogo}>
               <svg xmlns="http://www.w3.org/2000/svg" height="168px" width="168px" version="1.1" viewBox="0 0 168 168">
                 <path
@@ -130,4 +158,7 @@ SpotifyPlayerWidget.defaultProps = {
   isLoggedIn: false,
   isPaused: false,
   error: null,
+  volume: 0.5,
+  onVolumeChange: noop,
+  onResume: noop,
 }

@@ -5,6 +5,7 @@ import { Story } from '@storybook/react'
 export default {
   title: 'UI/SpotifyPlayerWidget',
   component: SpotifyPlayerWidget,
+  argTypes: { onVolumeChange: { action: 'volume changed' }, onResume: { action: 'resume' } },
 }
 
 const Template: Story = (args: any) => <SpotifyPlayerWidget {...args} />
