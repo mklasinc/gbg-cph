@@ -56,8 +56,7 @@ const ImageShader = shaderMaterial(
 extend({ ImageShader })
 
 const Image = () => {
-  const texture = useTexture('https://i8.amplience.net/i/rapha/_51A9067')
-  // const texture = useTexture('/textures/DSCF2145.JPG')
+  const texture = useTexture('/textures/DSCF2145.JPG')
   const [frame] = useState(new THREE.Vector2(3, 4))
   const { viewport } = useThree()
   const ref = useRef<THREE.Mesh>(null)
@@ -99,8 +98,7 @@ const Image = () => {
 }
 
 const Background = () => {
-  const texture = useTexture('https://i8.amplience.net/i/rapha/rapha_ss18_Argentina_Brevet_170_16x9')
-  // const texture = useTexture('/textures/DSCF2063.JPG')
+  const texture = useTexture('/textures/DSCF2063.JPG')
   const { viewport, camera } = useThree()
   const { width, height } = viewport.getCurrentViewport(camera)
 
