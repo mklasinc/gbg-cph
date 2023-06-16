@@ -9,3 +9,8 @@
 
 - [ ] Set up deployment pipeline
 - [ ] Do Spotify player test
+
+### Editor
+
+- geist: file tree
+- geist components

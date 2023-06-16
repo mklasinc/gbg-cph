@@ -1,0 +1,20 @@
+[
+  {
+    "id": "gdfgfsgdfsgdf",
+    "name": "Event 1",
+    "timestamp": 1100,
+    "type": "image",
+    "payload": {
+      "url": "http://www.example.com/image.jpg"
+    }
+  },
+  {
+    "id": "gdfgfsgdfsggs",
+    "name": "Event 2",
+    "timestamp": 11300,
+    "type": "image",
+    "payload": {
+      "url": "http://www.example.com/image.jpg"
+    }
+  }
+]
